@@ -2,11 +2,510 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Coming Soon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows NT 4.0 - windowsnt4.online</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #fff;
+            font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            margin: 0; padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Window chrome ── */
+        .window {
+            background: #c0c0c0;
+            border-top: 2px solid #fff;
+            border-left: 2px solid #fff;
+            border-right: 2px solid #808080;
+            border-bottom: 2px solid #808080;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .titlebar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: #fff;
+            font-weight: bold;
+            font-size: 11px;
+            padding: 3px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+        }
+
+        .titlebar-left { display: flex; align-items: center; gap: 5px; }
+
+        .win-logo {
+            width: 16px; height: 16px;
+            display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 1px;
+        }
+        .win-logo div:nth-child(1){background:#f00}
+        .win-logo div:nth-child(2){background:#0c0}
+        .win-logo div:nth-child(3){background:#00c}
+        .win-logo div:nth-child(4){background:#fc0}
+
+        .win-controls { display: flex; gap: 2px; }
+        .wbtn {
+            width: 16px; height: 14px;
+            background: #c0c0c0;
+            border-top: 1px solid #fff; border-left: 1px solid #fff;
+            border-right: 1px solid #808080; border-bottom: 1px solid #808080;
+            font-size: 9px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; color: #000;
+        }
+
+        /* ── Menubar ── */
+        .menubar {
+            background: #c0c0c0;
+            border-bottom: 1px solid #808080;
+            padding: 2px 4px;
+            display: flex; gap: 0;
+        }
+        .menu-item {
+            padding: 2px 8px; cursor: pointer; font-size: 11px;
+        }
+        .menu-item:hover { background: #000080; color: #fff; }
+
+        /* ── Content area ── */
+        .content-area {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* ── Left sidebar (tree) ── */
+        .sidebar {
+            width: 180px;
+            min-width: 180px;
+            border-right: 2px solid #808080;
+            background: #fff;
+            padding: 4px 0;
+            font-size: 11px;
+            overflow-y: auto;
+        }
+
+        .tree-header {
+            background: #000080;
+            color: #fff;
+            padding: 3px 8px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .tree-item {
+            padding: 2px 8px 2px 20px;
+            cursor: pointer;
+            display: flex; align-items: center; gap: 4px;
+            white-space: nowrap;
+        }
+        .tree-item:hover { background: #000080; color: #fff; }
+        .tree-item.active { background: #000080; color: #fff; }
+        .tree-item .icon { font-size: 13px; }
+
+        /* ── Main pane ── */
+        .main-pane {
+            flex: 1;
+            background: #fff;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .section {
+            display: none;
+            padding: 14px 18px;
+            font-size: 12px;
+            line-height: 1.65;
+            color: #000;
+        }
+        .section.active { display: block; }
+
+        .section h1 {
+            font-size: 17px;
+            font-weight: bold;
+            color: #000080;
+            border-bottom: 2px solid #000080;
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        .section h2 {
+            font-size: 13px;
+            font-weight: bold;
+            color: #000080;
+            margin: 14px 0 4px 0;
+            border-bottom: 1px solid #c0c0c0;
+        }
+
+        .section p { margin-bottom: 8px; }
+
+        .section ul, .section ol {
+            margin: 0 0 8px 22px;
+        }
+        .section li { margin-bottom: 3px; }
+
+        /* infobox */
+        .infobox {
+            float: right;
+            margin: 0 0 12px 16px;
+            border: 2px solid #808080;
+            background: #c0c0c0;
+            width: 220px;
+            font-size: 11px;
+        }
+        .infobox-title {
+            background: #000080;
+            color: #fff;
+            font-weight: bold;
+            padding: 4px 6px;
+            font-size: 11px;
+            text-align: center;
+        }
+        .infobox table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .infobox td {
+            padding: 3px 6px;
+            border-bottom: 1px solid #a0a0a0;
+            vertical-align: top;
+        }
+        .infobox td:first-child { font-weight: bold; white-space: nowrap; }
+
+        .clearfix::after { content: ''; display: block; clear: both; }
+
+        /* version badge */
+        .badge {
+            display: inline-block;
+            background: #000080;
+            color: #fff;
+            padding: 1px 6px;
+            font-size: 10px;
+            margin-right: 4px;
+        }
+
+        /* build table */
+        .build-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+        .build-table th {
+            background: #000080;
+            color: #fff;
+            padding: 3px 6px;
+            text-align: left;
+            border: 1px solid #808080;
+        }
+        .build-table td {
+            padding: 2px 6px;
+            border: 1px solid #c0c0c0;
+        }
+        .build-table tr:nth-child(even) td { background: #f0f0f0; }
+
+        /* source credit */
+        .source-credit {
+            font-size: 10px;
+            color: #808080;
+            margin-top: 10px;
+            border-top: 1px solid #c0c0c0;
+            padding-top: 6px;
+        }
+        .source-credit a { color: #0000aa; }
+
+        /* statusbar */
+        .statusbar {
+            background: #c0c0c0;
+            border-top: 1px solid #808080;
+            padding: 2px 6px;
+            display: flex; gap: 6px;
+            font-size: 11px;
+        }
+        .status-pane {
+            border-top: 1px solid #808080; border-left: 1px solid #808080;
+            border-right: 1px solid #fff; border-bottom: 1px solid #fff;
+            padding: 0 6px;
+        }
+
+
+    </style>
 </head>
 <body>
 
-    <p>The content is coming soon! This webpage has been created very recently and so is still being worked on.</p>
+<div class="window">
+    <div class="titlebar">
+        <div class="titlebar-left">
+            <div class="win-logo"><div></div><div></div><div></div><div></div></div>
+            Windows NT 4.0 — windowsnt4.online
+        </div>
+        <div class="win-controls">
+            <div class="wbtn">_</div>
+            <div class="wbtn">□</div>
+            <div class="wbtn">✕</div>
+        </div>
+    </div>
+
+    <div class="menubar">
+        <div class="menu-item">File</div>
+        <div class="menu-item">Edit</div>
+        <div class="menu-item">View</div>
+        <div class="menu-item">Go</div>
+        <div class="menu-item">Favorites</div>
+        <div class="menu-item">Help</div>
+    </div>
+
+    <div class="content-area">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="tree-header">📁 Contents</div>
+            <div class="tree-item active" onclick="show('overview', this)"><span class="icon">📄</span> Overview</div>
+            <div class="tree-item" onclick="show('history', this)"><span class="icon">📅</span> History</div>
+            <div class="tree-item" onclick="show('features', this)"><span class="icon">⚙️</span> Features</div>
+            <div class="tree-item" onclick="show('editions', this)"><span class="icon">💿</span> Editions</div>
+            <div class="tree-item" onclick="show('builds', this)"><span class="icon">🔧</span> Builds & SPs</div>
+            <div class="tree-item" onclick="show('hardware', this)"><span class="icon">🖥️</span> Hardware</div>
+            <div class="tree-item" onclick="show('trivia', this)"><span class="icon">🥚</span> Trivia</div>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-pane">
+
+            <!-- OVERVIEW -->
+            <div class="section active" id="overview">
+                <div class="infobox">
+                    <div class="infobox-title">Windows NT 4.0</div>
+                    <table>
+                        <tr><td>Developer</td><td>Microsoft</td></tr>
+                        <tr><td>Codename</td><td>Shell Update Release / Tukwila</td></tr>
+                        <tr><td>RTM</td><td>July 31, 1996</td></tr>
+                        <tr><td>GA</td><td>August 24, 1996</td></tr>
+                        <tr><td>Final build</td><td>4.0.1381.7097 (SP6a SRU)</td></tr>
+                        <tr><td>Kernel</td><td>Hybrid (NT 4.0)</td></tr>
+                        <tr><td>Platforms</td><td>x86, Alpha, MIPS, PowerPC</td></tr>
+                        <tr><td>Succeeded by</td><td>Windows 2000 (1999)</td></tr>
+                        <tr><td>Support end</td><td>June 30, 2004 (Workstation)<br>Dec 31, 2004 (Server)</td></tr>
+                    </table>
+                </div>
+
+                <h1>Windows NT 4.0</h1>
+
+                <p><strong>Windows NT 4.0</strong> is a major release of the Windows NT operating system developed by Microsoft, targeting the data server and personal workstation markets. It was released to manufacturing on <strong>July 31, 1996</strong>, and to retail on <strong>August 24, 1996</strong>.</p>
+
+                <p>Its most prominent user-facing change was the adoption of the <strong>Windows 95 user interface</strong> — bringing the Start menu, taskbar, and Windows Explorer shell to the enterprise-grade NT kernel for the first time. Internally, Microsoft referred to it as the <em>Shell Update Release (SUR)</em>.</p>
+
+                <p>NT 4.0 was the direct successor to Windows NT 3.51, and was itself succeeded by Windows 2000 in December 1999. It was also the <strong>last version of Windows NT to carry the "NT" branding</strong> in its product name — Windows 2000, while built on NT technology, dropped the moniker.</p>
+
+                <p>Despite Microsoft's push to migrate customers to Windows 2000, NT 4.0 remained widely deployed in enterprises well into the mid-2000s, testament to its stability and reliability.</p>
+
+                <div class="clearfix"></div>
+                <div class="source-credit">Sources: <a href="https://en.wikipedia.org/wiki/Windows_NT_4.0" target="_blank">Wikipedia</a>, <a href="https://betawiki.net/wiki/Windows_NT_4.0" target="_blank">BetaWiki</a></div>
+            </div>
+
+            <!-- HISTORY -->
+            <div class="section" id="history">
+                <h1>History</h1>
+
+                <h2>Background</h2>
+                <p>Windows NT 3.51, released in 1995, used the older Program Manager interface inherited from Windows 3.x. Meanwhile, Windows 95 had debuted to mass market success with its revolutionary new shell. Microsoft's goal with NT 4.0 was to bring that familiar, modern UI to the more powerful NT kernel — creating an OS suitable for both desktop users and corporate servers.</p>
+
+                <h2>Development</h2>
+                <p>The project was codenamed <strong>Shell Update Release (SUR)</strong>, sometimes also referred to as <em>Tukwila</em>. A key and controversial architectural decision was made during development: the graphics subsystem (GDI) was moved from user mode into <strong>kernel mode</strong>. This dramatically improved graphics performance but meant that a buggy or malicious graphics driver could destabilise the entire system.</p>
+
+                <h2>Release</h2>
+                <p>NT 4.0 was released to manufacturing on July 31, 1996, followed by retail availability on August 24, 1996. Server editions followed in early September 1996. The release was well received, particularly in corporate environments where its stability over consumer Windows versions was valued.</p>
+
+                <h2>Legacy</h2>
+                <p>NT 4.0 became the <strong>longest-running version of Windows NT</strong> until Windows 2000's release four years later. Over its support lifecycle it received six official service packs, plus a Security Rollup Update. A planned seventh service pack was ultimately cancelled in April 2001, with Microsoft releasing Update Rollup 6a in its place.</p>
+
+                <p>On <strong>12 February 2004</strong>, over 30,000 source files — partly for Windows NT 4.0 — were leaked onto the internet. The leak was later traced back to Mainsoft.</p>
+
+                <div class="source-credit">Sources: <a href="https://en.wikipedia.org/wiki/Windows_NT_4.0" target="_blank">Wikipedia</a>, <a href="https://betawiki.net/wiki/Windows_NT_4.0" target="_blank">BetaWiki</a></div>
+            </div>
+
+            <!-- FEATURES -->
+            <div class="section" id="features">
+                <h1>Features</h1>
+
+                <h2>Shell & UI</h2>
+                <p>NT 4.0 brought the complete Windows 95 shell experience to the NT platform:</p>
+                <ul>
+                    <li>Start menu and taskbar</li>
+                    <li>Windows NT Explorer (later known as File Explorer)</li>
+                    <li>"My Computer", "My Documents", and "My" nomenclature for shell folders</li>
+                    <li>Recycle Bin, shortcut icons, and the desktop as a folder</li>
+                    <li>Per-user Start menu shortcuts, separated from shared shortcuts by a divider line</li>
+                </ul>
+
+                <h2>Extras from Microsoft Plus!</h2>
+                <p>NT 4.0 also shipped with several features from <em>Microsoft Plus! for Windows 95</em>:</p>
+                <ul>
+                    <li>Space Cadet Pinball (3D Pinball)</li>
+                    <li>Font smoothing (anti-aliasing)</li>
+                    <li>Full window drag (show window contents while dragging)</li>
+                    <li>High-colour icons</li>
+                    <li>Wallpaper stretch-to-fit</li>
+                    <li>Desktop Themes utility (via Resource Kit)</li>
+                </ul>
+
+                <h2>New Technical Components</h2>
+                <ul>
+                    <li><strong>CryptoAPI</strong> — Microsoft's cryptography API, introduced here</li>
+                    <li><strong>DCOM</strong> — Distributed Component Object Model</li>
+                    <li><strong>TAPI 2.0</strong> — Telephony API, first TAPI release on Windows NT</li>
+                    <li><strong>Task Manager</strong> — the familiar Ctrl+Alt+Del task switcher</li>
+                    <li><strong>Winsock 2</strong> and improved TCP/IP stack</li>
+                    <li><strong>DirectX</strong> support (limited)</li>
+                    <li><strong>NTFS defragmentation</strong> support</li>
+                    <li><strong>Internet Explorer 2</strong> bundled</li>
+                    <li><strong>System Policy Editor</strong></li>
+                    <li>Partial Bluetooth 1.0 support (Service Pack 5+)</li>
+                </ul>
+
+                <h2>Architectural Change: GDI in Kernel Mode</h2>
+                <p>One of the most significant under-the-hood changes was moving the GDI (Graphics Device Interface) and the graphics drivers from user mode into <strong>kernel mode</strong>. This yielded a major performance boost for graphical applications — particularly important as Windows NT competed with Windows 95 on the desktop — but at the cost of stability: a buggy display driver could now crash the entire OS.</p>
+
+                <div class="source-credit">Sources: <a href="https://en.wikipedia.org/wiki/Windows_NT_4.0" target="_blank">Wikipedia</a>, <a href="https://betawiki.net/wiki/Windows_NT_4.0" target="_blank">BetaWiki</a></div>
+            </div>
+
+            <!-- EDITIONS -->
+            <div class="section" id="editions">
+                <h1>Editions</h1>
+
+                <h2>Workstation</h2>
+                <p>The standard desktop edition targeted at business users and power users. It offered the stability of the NT kernel with the familiar Windows 95 interface, supporting up to 2 processors and 4 GB of RAM.</p>
+
+                <h2>Server</h2>
+                <p>The server edition supported more processors and higher RAM limits, and included <strong>Internet Information Services (IIS) 2.0</strong>, Microsoft FrontPage 1.1, NetShow Services, and Remote Access Service.</p>
+
+                <h2>Enterprise Edition</h2>
+                <p>An enhanced server edition with support for up to 8 processors and clustering capabilities via the Microsoft Cluster Server (MSCS) add-on. Targeted at mission-critical enterprise deployments.</p>
+
+                <h2>Terminal Server Edition</h2>
+                <p>Released post-launch, this edition added multi-user remote desktop capabilities — an early precursor to what would become Remote Desktop Services in later Windows versions.</p>
+
+                <h2>Embedded</h2>
+                <p>A modular variant of NT 4.0 designed for embedded systems and appliances. It had the longest support lifecycle of all NT 4.0 editions, with extended support lasting until <strong>July 11, 2006</strong>.</p>
+
+                <div class="source-credit">Sources: <a href="https://en.wikipedia.org/wiki/Windows_NT_4.0" target="_blank">Wikipedia</a>, <a href="https://betawiki.net/wiki/Windows_NT_4.0" target="_blank">BetaWiki</a></div>
+            </div>
+
+            <!-- BUILDS -->
+            <div class="section" id="builds">
+                <h1>Builds &amp; Service Packs</h1>
+
+                <h2>Service Packs</h2>
+                <p>NT 4.0 received six official service packs over its support lifecycle. Note that not all service packs were available for all CPU architectures:</p>
+
+                <table class="build-table">
+                    <tr><th>Service Pack</th><th>Notes</th></tr>
+                    <tr><td>SP1</td><td>Available for x86 and MIPS</td></tr>
+                    <tr><td>SP2</td><td>Final release for PowerPC</td></tr>
+                    <tr><td>SP3</td><td>Required for Option Pack installation</td></tr>
+                    <tr><td>SP4</td><td>Option Pack install warns but proceeds</td></tr>
+                    <tr><td>SP5</td><td>Added partial Bluetooth 1.0 support</td></tr>
+                    <tr><td>SP6</td><td>Fixed CPUID &gt;3 kernel crash; pulled due to severe bug</td></tr>
+                    <tr><td>SP6a</td><td>Revised SP6; final official service pack</td></tr>
+                    <tr><td>Security Rollup (SRU)</td><td>Released 2001; replaces cancelled SP7. Final build: 4.0.1381.7097</td></tr>
+                </table>
+
+                <h2>Option Pack (1997)</h2>
+                <p>Microsoft released an Option Pack in 1997 that added server components including Personal Web Server, Transaction Server, Message Queue Client, FrontPage 98 Server Extensions, Internet Information Services 4.0, Windows Scripting Host, and more. It required SP3 or later. This was the only option pack ever released for a Windows version — its components were simply folded into Windows 2000.</p>
+
+                <h2>Key Build Milestones</h2>
+                <table class="build-table">
+                    <tr><th>Stage</th><th>Build</th></tr>
+                    <tr><td>Beta 1</td><td>Early pre-release</td></tr>
+                    <tr><td>Beta 2</td><td>Public beta</td></tr>
+                    <tr><td>Release Candidate 1</td><td>Near-final</td></tr>
+                    <tr><td>Release Candidate 2</td><td>Near-final</td></tr>
+                    <tr><td>RTM</td><td>4.0.1381 (July 31, 1996)</td></tr>
+                    <tr><td>SP6a Security Rollup</td><td>4.0.1381.7097 (final)</td></tr>
+                </table>
+
+                <div class="source-credit">Sources: <a href="https://betawiki.net/wiki/Windows_NT_4.0" target="_blank">BetaWiki</a>, <a href="https://en.wikipedia.org/wiki/Windows_NT_4.0" target="_blank">Wikipedia</a></div>
+            </div>
+
+            <!-- HARDWARE -->
+            <div class="section" id="hardware">
+                <h1>Hardware</h1>
+
+                <h2>Supported Architectures</h2>
+                <p>NT 4.0 was one of the most architecturally diverse versions of Windows ever released, supporting four CPU families at launch:</p>
+                <ul>
+                    <li><strong>x86 (IA-32)</strong> — PC/AT and PC-98 compatible systems</li>
+                    <li><strong>DEC Alpha</strong> — supported until August 1999 (SP6 dropped Alpha after SP4)</li>
+                    <li><strong>MIPS</strong> — only SP1 was released for MIPS</li>
+                    <li><strong>PowerPC</strong> — SP2 was the final service pack for PowerPC</li>
+                </ul>
+                <p>NT 4.0 was the <strong>last version of Windows to support Alpha, MIPS, and PowerPC</strong>. Windows 2000 was x86-only, and non-x86 Windows would not return until Windows RT (ARM) with Windows 8.</p>
+
+                <h2>x86 System Requirements</h2>
+                <ul>
+                    <li>486 processor or better (386 support dropped from NT 3.51)</li>
+                    <li>Minimum 16 MB RAM</li>
+                    <li>110 MB hard drive space (varies by components)</li>
+                    <li>VGA or better display</li>
+                    <li>CD-ROM drive (floppy not required for installation, but needed for Emergency Repair Disk)</li>
+                </ul>
+
+                <h2>Known Compatibility Issue</h2>
+                <p>Early builds of NT 4.0 would crash during setup or at boot if run on a processor with a CPUID value higher than 3 — meaning many modern (at the time) CPUs were affected. This kernel bug was fixed in <strong>Service Pack 6</strong>.</p>
+
+                <div class="source-credit">Sources: <a href="https://betawiki.net/wiki/Windows_NT_4.0" target="_blank">BetaWiki</a>, <a href="https://en.wikipedia.org/wiki/Windows_NT_4.0" target="_blank">Wikipedia</a></div>
+            </div>
+
+            <!-- TRIVIA -->
+            <div class="section" id="trivia">
+                <h1>Trivia &amp; Easter Eggs</h1>
+
+                <h2>The Hidden Credits Easter Egg</h2>
+                <p>Windows NT 4.0 contains the Product Team credits Easter egg carried over from Windows 95. To trigger it, create a new folder on the desktop and rename it sequentially to each of the following names:</p>
+                <ol>
+                    <li><code>and now, the moment you've all been waiting for</code></li>
+                    <li><code>we proudly present for your viewing pleasure</code></li>
+                    <li><code>The Microsoft Windows NT Product Team!</code></li>
+                </ol>
+                <p>The egg is implemented in <code>SHELL32.DLL</code>, with references to "95" replaced by "NT". The Easter egg folder names are stored as custom hashes in the .text section of SHELL32.DLL, XOR'd with 0x95 as an obfuscation measure. Interestingly, early builds showed "SUR Shell Team" and "SUR Shell Test Team" — a reference to the Shell Update Release codename.</p>
+
+                <h2>The Source Code Leak</h2>
+                <p>On February 12, 2004 — years after NT 4.0's end of mainstream support — over <strong>30,000 source files</strong> for Windows NT 4.0 (and Windows 2000) were leaked onto the internet. The leak was later traced back to <strong>Mainsoft</strong>, a company that had licensed the source code to port Windows APIs to Unix.</p>
+
+                <h2>The Cancelled SP7</h2>
+                <p>Microsoft originally planned a seventh service pack for NT 4.0. It was cancelled in April 2001, and the Security Rollup Update (also called SP6a SRU) was released instead. The cancellation signalled Microsoft's push to finally end NT 4.0 and move customers to Windows 2000 and XP.</p>
+
+                <h2>Space Cadet Pinball</h2>
+                <p>NT 4.0 was one of the first Windows versions to ship with <strong>3D Pinball: Space Cadet</strong>, sourced from the <em>Full Tilt! Pinball</em> game by Maxis. The game would go on to become one of the most iconic included Windows apps, surviving through to Windows XP before being quietly dropped in Vista.</p>
+
+                <div class="source-credit">Sources: <a href="https://betawiki.net/wiki/Windows_NT_4.0" target="_blank">BetaWiki</a>, <a href="https://en.wikipedia.org/wiki/Windows_NT_4.0" target="_blank">Wikipedia</a></div>
+            </div>
+
+        </div><!-- /main-pane -->
+    </div><!-- /content-area -->
+
+    <div class="statusbar">
+        <span class="status-pane" id="status-text">Overview</span>
+        <span class="status-pane">windowsnt4.online</span>
+    </div>
+</div>
+
+<script>
+    function show(id, el) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tree-item').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        el.classList.add('active');
+        document.getElementById('status-text').textContent = el.textContent.trim();
+    }
+</script>
 
 </body>
 </html>
