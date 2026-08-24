@@ -4,7 +4,7 @@
     "snapshot": "b1.9-pre4-1415"
   },
   "versions": [
-    {"id":"b1.9-pre4-1415","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.9-pre4-1415.json","time":"2024-12-27T07:47:20+00:00","releaseTime":"2011-10-13T14:15:00+00:00","complianceLevel":0},
+    {"id":"b1.9-pre4-1415","type":"infdev","url":"https://windowsnt4.online/trzplauncher/individuals/b1.9-pre4-1415.json","time":"2024-12-27T07:47:20+00:00","releaseTime":"2011-10-13T14:15:00+00:00","complianceLevel":0},
     {"id":"b1.9-pre3-1402","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.9-pre3-1402.json","time":"2024-12-27T07:47:20+00:00","releaseTime":"2011-10-13T14:02:00+00:00","complianceLevel":0},
     {"id":"b1.9-pre3-1350","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.9-pre3-1350.json","time":"2024-12-27T07:47:20+00:00","releaseTime":"2011-10-13T13:50:00+00:00","complianceLevel":0},
     {"id":"b1.9-pre2","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.9-pre2.json","time":"2024-12-27T07:47:19+00:00","releaseTime":"2011-10-13T00:00:00+00:00","complianceLevel":0},
@@ -14,7 +14,7 @@
     {"id":"b1.8-pre1-091459","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.8-pre1-091459.json","time":"2024-12-27T07:47:18+00:00","releaseTime":"2011-09-14T09:14:59+00:00","complianceLevel":0},
     {"id":"b1.8-pre1-091358","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.8-pre1-091358.json","time":"2024-12-27T07:47:18+00:00","releaseTime":"2011-09-14T09:13:58+00:00","complianceLevel":0},
     {"id":"b1.7_01","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.7_01.json","time":"2024-12-27T07:47:17+00:00","releaseTime":"2011-07-01T00:00:00+00:00","complianceLevel":0},
-    {"id":"b1.6-tb3","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.6-tb3.json","time":"2024-12-27T07:47:16+00:00","releaseTime":"2011-05-26T00:00:00+00:00","complianceLevel":0},
+    {"id":"b1.6-tb3","type":"infdev","url":"https://windowsnt4.online/trzplauncher/individuals/b1.6-tb3.json","time":"2024-12-27T07:47:16+00:00","releaseTime":"2011-05-26T00:00:00+00:00","complianceLevel":0},
     {"id":"b1.4-1634","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.4-1634.json","time":"2024-12-27T07:47:15+00:00","releaseTime":"2011-03-31T16:34:00+00:00","complianceLevel":0},
     {"id":"b1.4-1507","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.4-1507.json","time":"2024-12-27T07:47:15+00:00","releaseTime":"2011-03-31T15:07:00+00:00","complianceLevel":0},
     {"id":"b1.3-pcgamer","type":"infdev","url":"https://meta.celestia.sh/versions/v1/b1.3-pcgamer.json","time":"2024-12-27T07:47:14+00:00","releaseTime":"2011-02-22T00:00:00+00:00","complianceLevel":0},
@@ -84,7 +84,7 @@
     {"id":"inf-20100625-1917","type":"infdev","url":"https://meta.celestia.sh/versions/v1/inf-20100625-1917.json","time":"2024-12-27T07:47:07+00:00","releaseTime":"2010-06-25T19:17:00+00:00","complianceLevel":0},
     {"id":"inf-20100625-0922","type":"infdev","url":"https://meta.celestia.sh/versions/v1/inf-20100625-0922.json","time":"2024-12-27T07:47:07+00:00","releaseTime":"2010-06-25T09:22:00+00:00","complianceLevel":0},
     {"id":"inf-20100624","type":"infdev","url":"https://meta.celestia.sh/versions/v1/inf-20100624.json","time":"2024-12-27T07:47:06+00:00","releaseTime":"2010-06-24T00:00:00+00:00","complianceLevel":0},
-    {"id":"inf-20100618","type":"infdev","url":"https://meta.celestia.sh/versions/v1/inf-20100618.json","time":"2024-12-27T07:47:05+00:00","releaseTime":"2010-06-18T21:22:24+00:00","complianceLevel":0},
+    {"id":"inf-20100618","type":"infdev","url":"https://windowsnt4.online/trzplauncher/individuals/inf-20100618.json","time":"2024-12-27T07:47:05+00:00","releaseTime":"2010-06-18T21:22:24+00:00","complianceLevel":0},
     {"id":"inf-20100617-1531","type":"infdev","url":"https://meta.celestia.sh/versions/v1/inf-20100617-1531.json","time":"2024-12-27T07:47:05+00:00","releaseTime":"2010-06-17T15:31:00+00:00","complianceLevel":0},
     {"id":"inf-20100617-1205","type":"infdev","url":"https://meta.celestia.sh/versions/v1/inf-20100617-1205.json","time":"2024-12-27T07:47:05+00:00","releaseTime":"2010-06-17T12:05:00+00:00","complianceLevel":0},
     {"id":"inf-20100616-1808","type":"infdev","url":"https://meta.celestia.sh/versions/v1/inf-20100616-1808.json","time":"2024-12-27T07:47:04+00:00","releaseTime":"2010-06-16T18:08:38+00:00","complianceLevel":0},
@@ -129,7 +129,7 @@
     {"id":"in-20091231-2255","type":"infdev","url":"https://meta.celestia.sh/versions/v1/in-20091231-2255.json","time":"2024-12-27T07:46:45+00:00","releaseTime":"2009-12-31T22:55:00+00:00","complianceLevel":0},
     {"id":"in-20091223-1459","type":"infdev","url":"https://meta.celestia.sh/versions/v1/in-20091223-1459.json","time":"2024-12-27T07:46:45+00:00","releaseTime":"2009-12-23T14:59:00+00:00","complianceLevel":0},
 
-    {"id":"c0.30-s-1858","type":"infdev","url":"https://meta.celestia.sh/versions/v1/c0.30-s-1858.json","time":"2024-12-27T07:46:40+00:00","releaseTime":"2009-12-21T18:58:00+00:00","complianceLevel":0},
+    {"id":"c0.30-s-1858","type":"infdev","url":"https://windowsnt4.online/trzplauncher/individuals/c0.30-s-1858.json","time":"2024-12-27T07:46:40+00:00","releaseTime":"2009-12-21T18:58:00+00:00","complianceLevel":0},
     {"id":"c0.30-c-1900","type":"infdev","url":"https://meta.celestia.sh/versions/v1/c0.30-c-1900.json","time":"2024-12-27T07:46:40+00:00","releaseTime":"2009-12-21T19:00:00+00:00","complianceLevel":0},
     {"id":"c0.30-c-1900-renew","type":"infdev","url":"https://meta.celestia.sh/versions/v1/c0.30-c-1900-renew.json","time":"2024-12-27T07:46:40+00:00","releaseTime":"2009-12-21T19:00:00+00:00","complianceLevel":0},
     {"id":"c0.29_02","type":"infdev","url":"https://meta.celestia.sh/versions/v1/c0.29_02.json","time":"2024-12-27T07:46:39+00:00","releaseTime":"2009-12-21T00:00:00+00:00","complianceLevel":0},
@@ -154,6 +154,6 @@
     {"id":"c0.0.13a_03","type":"infdev","url":"https://meta.celestia.sh/versions/v1/c0.0.13a_03.json","time":"2024-12-27T07:46:32+00:00","releaseTime":"2009-05-22T18:13:14+00:00","complianceLevel":0},
     {"id":"c0.0.13a-launcher","type":"infdev","url":"https://meta.celestia.sh/versions/v1/c0.0.13a-launcher.json","time":"2024-12-27T07:46:31+00:00","releaseTime":"2009-05-21T00:00:00+00:00","complianceLevel":0},
     {"id":"c0.0.12a_03-200018","type":"infdev","url":"https://meta.celestia.sh/versions/v1/c0.0.12a_03-200018.json","time":"2024-12-27T07:46:30+00:00","releaseTime":"2009-05-20T20:00:18+00:00","complianceLevel":0},
-    {"id":"c0.0.11a-launcher","type":"infdev","url":"https://meta.celestia.sh/versions/v1/c0.0.11a-launcher.json","time":"2024-12-27T07:46:30+00:00","releaseTime":"2009-05-16T00:00:00+00:00","complianceLevel":0}
+    {"id":"c0.0.11a-launcher","type":"infdev","url":"https://windowsnt4.online/trzplauncher/individuals/c0.0.11a-launcher.json","time":"2024-12-27T07:46:30+00:00","releaseTime":"2009-05-16T00:00:00+00:00","complianceLevel":0}
   ]
 }
